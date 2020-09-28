@@ -1,4 +1,5 @@
 /* global window, exports, define */
+const stripAnsi = require('strip-ansi')
 
 !function() {
     'use strict'
@@ -130,7 +131,7 @@
                         sign = ''
                     }
                     pad_character = ph.pad_char ? ph.pad_char === '0' ? '0' : ph.pad_char.charAt(1) : ' '
-                    pad_length = ph.width - (sign + arg).length
+                    pad_length = ph.width - (sign + stripAnsi(arg)).length
                     pad = ph.width ? (pad_length > 0 ? pad_character.repeat(pad_length) : '') : ''
                     output += ph.align ? sign + arg + pad : (pad_character === '0' ? sign + pad + arg : pad + sign + arg)
                 }
